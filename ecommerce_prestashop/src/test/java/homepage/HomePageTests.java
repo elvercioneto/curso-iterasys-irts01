@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import base.BaseTests;
 import pages.LoginPage;
+import pages.ModalProdutoPage;
 import pages.ProdutoPage;
 
 
@@ -53,17 +54,17 @@ public class HomePageTests extends BaseTests {
 	LoginPage loginPage;
 	@Test
 	public void testLoginComSucesso_UsuarioLogado() {
-		//Clicar no botão SignIn na HomePage
+		//Clicar no botÃ£o SignIn na HomePage
 		loginPage = homePage.clicarBotaoSigIn();
 		
-		//Preencher usuário e senha
+		//Preencher usuï¿½rio e senha
 		loginPage.preencherEmail("elvercio@mail.com");
 		loginPage.preencherPassword("12345");
 		
-		//Clicar no botão Sign in para logar
+		//Clicar no botï¿½o Sign in para logar
 		loginPage.clicarBotaoSignIn();
 		
-		//Validar se o usuário está logado de fato
+		//Validar se o usuári está logado de fao
 		assertThat(homePage.estaLogado("Elvercio Neto"), is(true));
 		
 		carregarPaginaInicial();
@@ -72,8 +73,8 @@ public class HomePageTests extends BaseTests {
 	@Test
 	public void incluirProdutoNoCarrinho_ProdutoIncluidoComSucesso() {
 		
-		//--Pré-Condição
-		//usuário logado
+		//--PrÃ©-CondiÃ§Ã£o
+		//usuÃ¡rio logado
 		if(!homePage.estaLogado("Elvercio Neto")) {
 			testLoginComSucesso_UsuarioLogado();
 		}
@@ -100,7 +101,13 @@ public class HomePageTests extends BaseTests {
 		
 		//Selecionar quantidade
 		produtoPage.alterarQuantidade(2);
+		
 		//Adicionar no carrinho
+		
+		ModalProdutoPage modalProdutoPage = produtoPage.clicarBotaoAddToCart();
+		
+		assertThat(modalProdutoPage.obterMensagemProdutoAdicionado(), is("Product successfully added to your shopping cart"));
+		
 	}
 	
 

@@ -23,7 +23,7 @@ public class ProdutoPage {
 	
 	private By botaoAddToCart = By.className("add-to-cart");
 	
-	//método construtor
+	//mï¿½todo construtor
 	public ProdutoPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -64,8 +64,9 @@ public class ProdutoPage {
 		driver.findElement(quantidadeProduto).sendKeys(Integer.toString(quantidade));
 	}
 	
-	public void clicarBotaoAddToCart() {
+	public  ModalProdutoPage clicarBotaoAddToCart() {
 		driver.findElement(botaoAddToCart);
+		return new ModalProdutoPage(driver);
 	}
 
 }
